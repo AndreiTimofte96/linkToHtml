@@ -10,55 +10,43 @@
   const url3 = "http://ortodoxia.rol.ro/cutremurtor-vezi-aici-ce-se-intampla-cu-sufletele-pruncilor-avortati--969637.html";
   const url4 = "http://sanatatea.ro/7-semne-care-va-arata-ca-nu-sunteti-pentru-prima-data-pe-pamant/";
   const url5 = "http://stirionline19.pw/daniela-crudu-tot-mai-desfigurata-de-operatiile-estetice/";
-
-  function isBlank(str) {
-    return (!str || /^\s*$/.test(str));
-}
-
-
+  const url6 = "http://www.livebiz.ro/video/aude-pentru-prima-data-vocea-mamei-sale/";
+  
   var options = {
 
-    uri: url1,
+    uri: url6,
     transform: (body) => {
       return cheerio.load(body);
     }
   };
+  
+  var boilerpipe = new Boilerpipe({
+    extractor: Boilerpipe.Extractor.ArticleSentences
+  }).setUrl(options.uri);
+
 
   rp(options).then(($) => {
-      //console.log($("p").text());
+      
+
+      console.log("<!DOCTYPE html>");
+      console.log("<html>");
       console.log("<div>");
+      
       console.log("<h1>");
       console.log($("title").text());
       console.log("</h1>");
       
-      //let data = $("p").html();
-      //console.log(data);
-
-      $('p').each(function(i, element){
-        let a = $(this).text();
-        if (!isBlank(a)){
-        console.log("<p>");
-        console.log(a);
-        console.log("</p>");
+      boilerpipe.getText(function(err, text){
+        if (!err) {
+          console.log("<p>");
+          console.log(text);
+          console.log("</p>");
+          console.log("</div>");
+          console.log("<html>");
         }
       });
 
-      console.log("</div>");
     }).catch((e) => {
       console.log(e);
     });
-
 })();
-
-var boilerpipe = new Boilerpipe({
-  extractor: Boilerpipe.Extractor.ArticleSentences
-  });
-
-boilerpipe.setUrl(url3);
-
-boilerpipe.getText(function(err, text){
-    if (!err) {
-        console.log(text);
-    }
-});
-
