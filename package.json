@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/AndreiTimofte96/linkToHtml#readme",
   "dependencies": {
+    "boilerpipe": "0.0.7",
     "cheerio": "^0.22.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.0"
