@@ -4,17 +4,10 @@
   const requestPromise = require('request-promise');
   const cheerio = require('cheerio');
   const Boilerpipe = require('boilerpipe');
-
-  const url1 = "http://stiri.co/bayern-incerca-sa-transfere-starurile-lui-monaco-aceasta-vara/";
-  const url2 = "http://gandul.md/monica-bellucci-surprinde-sexul-frecvent-si-legumele-proaspete-cheia-unei-vieti-sanatoase/"
-  const url3 = "http://ortodoxia.rol.ro/cutremurtor-vezi-aici-ce-se-intampla-cu-sufletele-pruncilor-avortati--969637.html";
-  const url4 = "http://sanatatea.ro/7-semne-care-va-arata-ca-nu-sunteti-pentru-prima-data-pe-pamant/";
-  const url5 = "http://stirionline19.pw/daniela-crudu-tot-mai-desfigurata-de-operatiile-estetice/";
-  const url6 = "http://www.livebiz.ro/video/aude-pentru-prima-data-vocea-mamei-sale/";
-  const url7 = "https://www.cocoon.ro/soc-carne-de-om-descoperita-la-mcdonalds/";
-
+  const url = require('./url.js');
 
   const getTitle = (url) => {
+
     const options = {
       uri: url,
       transform: (body) => {
@@ -30,6 +23,7 @@
   };
 
   const getParagraph = (url) => new Promise((resolve, reject) => {
+    
     const boilerpipe = new Boilerpipe({
       extractor: Boilerpipe.Extractor.ArticleSentences,
     }).setUrl(url);
@@ -44,15 +38,30 @@
     });
   });
 
-  const getData = (url) => Promise.all([
+  const getData = (url) => Promise.all([ 
     getTitle(url),
     getParagraph(url)
-  ]).then((results) => results);
+  ]).then((results) => results)
 
 
-  getData(url7).then((results) => {
-    console.log(results);
+
+  getData(url.url10).then((results) => {
+    
+    console.log("<!DOCTYPE html>");
+    console.log("<html>");
+    console.log("<div>");
+
+    console.log("<h1>");
+    console.log(results[0]);
+    console.log("</h1>");
+
+    console.log("<p>");
+    console.log(results[1]);
+    console.log("</p>");
+
+    console.log("</div>");
+    console.log("<html>");
+
   });
-
 
 })();
