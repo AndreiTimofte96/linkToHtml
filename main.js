@@ -41,7 +41,7 @@
   const getImages = (url) => new Promise((resolve, reject) => {
     
     const boilerpipe = new Boilerpipe({
-      extractor: Boilerpipe.Extractor.LargestContent,
+      extractor: Boilerpipe.Extractor.KeepEverything
     }).setUrl(url);
 
     boilerpipe.getImages((err, images) => {
@@ -60,25 +60,7 @@
     getImages(url)
   ]).then((results) => results);
 
-  const selectImage = (results) => new Promise((resolve, reject) => {
-
-    /*for (let img in results){
-      console.log(results[img]);
-    };*/
-
-    for (let img in results){
-      if (results[img].width != null ){//&& results[img].alt != null){// && results[img].height != null){
-        //console.log(results[img].src);
-        resolve(results[img].src);
-      }
-      else{
-        reject(null);
-      }
-    }
-  }).then((results) => results);
-
-
-  getData(url.url6).then((results) => {
+  getData(url.url7).then((results) => {
     
     console.log("<!DOCTYPE html>");
     console.log("<html>");
@@ -86,16 +68,16 @@
     console.log("<h1>");
     console.log(results[0]);
     console.log("</h1>");
-    console.log("<img src = ");
+    
 
     //console.log(results[2]);
-    if (results[2].length > 1){
-      selectImage(results[2]).then( (results) => {console.log(results)});
-    }
-    else{
-      console.log(results[2][0].src);
-    }
-    console.log("/>");
+    for (let img in results[2]){
+      
+      console.log("<img src = ");  
+      console.log(results[2][img].src);
+      console.log("/>");
+    };
+
     console.log("<p>");
     console.log(results[1]);
     console.log("</p>");

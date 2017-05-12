@@ -8,7 +8,7 @@ const url = {
   url7 : "http://www.poze24.com/vezi-ce-dezvaluie-arborele-zodiei-tale-despre-destinul-tau/",
   url8 : "http://ponturifierbinti.com/un-politician-un-sobolan",
   url9 : "http://www.livebiz.ro/video/zheng-chunhui-trunchi-sculptat/",
-  url10 : "http://zutv.ro/news/video-cristiano-ronaldo-a-facut-o-pasiune-pentru-o-melodie-romaneasca-ghicesti-cine-e-norocosul-id32005.html"
+  url10 : "https://www.cocoon.ro/mandria-aeronauticii-romanesti-calcata-cu-tancul-istoricul-de-aviatie-valeriu-avram-spune-ca-a-plans-cand-a-vazut-cum-erau-distruse-avioanele-iar-93/"
  };
 
 
