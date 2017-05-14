@@ -60,30 +60,15 @@
     getImages(url)
   ]).then((results) => results);
 
-  getData(url.url7).then((results) => {
-    
-    console.log("<!DOCTYPE html>");
-    console.log("<html>");
-    console.log("<div>");
-    console.log("<h1>");
+  getData(url.url2).then((results) => {
+  
     console.log(results[0]);
-    console.log("</h1>");
     
-
     //console.log(results[2]);
     for (let img in results[2]){
-      
-      console.log("<img src = ");  
       console.log(results[2][img].src);
-      console.log("/>");
     };
 
-    console.log("<p>");
     console.log(results[1]);
-    console.log("</p>");
-
-    console.log("</div>");
-    console.log("</html>");
-
   });
 })();
