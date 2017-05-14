@@ -3,10 +3,12 @@
   const request = require('request');
   const requestPromise = require('request-promise');
   const cheerio = require('cheerio');
-  
-  const url1 = "http://stiri.rol.ro";
-  const url2 = "http://ponturifierbinti.com"
-  const urls = [];
+  const urls = require('./urlMain.js');
+  const verifiedLinks = require('./verifiedLinks.json');
+
+
+  let selectedUrls = [];
+  //let allUrls = [];
  
   const getLinks = (url) => {
 
@@ -19,21 +21,42 @@
 
     return requestPromise(options).then(($) => {
 
+      selectedUrls = [];
     	$('a').each(function(i, element){
-      		let url = $(this).attr('href'); 
-			if (urls.indexOf(url) === -1 && url.includes(options.uri)){
-      			urls.push(url);
+      		let link = $(this).attr('href'); 
+			if (selectedUrls.indexOf(link) === -1 && link.includes(options.uri)){
+      		selectedUrls.push(link);
 			}
       	});
-      	return urls;
+      	return selectedUrls;
 
     }).catch((e) => {
       return null;
     });
   };
 
-  getLinks(url1).then((results) => {
-    console.log(results);
+  const getAllLinks = (urls) => Promise.all(urls.map((url) => getLinks(url)))
+  .then((results) => {
+      let links = [];
+      results.map((v) => {
+        links = links.concat(v);
+    });
+    return links;
+  }); 
+
+
+  //getAllLinks(urls).then((links) => console.log(links));
+
+  getAllLinks(urls).then((links) => {
+
+    //console.log(links);
+    let unchecked = [];
+    links.map( (l) => {
+      if ( !(l in verifiedLinks) ){
+        unchecked = unchecked.concat(l);
+      }
+    });
+    console.log(unchecked);
   });
 
 })();

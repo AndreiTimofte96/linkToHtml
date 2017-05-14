@@ -10,6 +10,4 @@ const url = {
   url9 : "http://www.livebiz.ro/video/zheng-chunhui-trunchi-sculptat/",
   url10 : "https://www.cocoon.ro/mandria-aeronauticii-romanesti-calcata-cu-tancul-istoricul-de-aviatie-valeriu-avram-spune-ca-a-plans-cand-a-vazut-cum-erau-distruse-avioanele-iar-93/"
  };
-
-
 module.exports = url;

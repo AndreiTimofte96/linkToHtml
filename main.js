@@ -60,13 +60,14 @@
     getImages(url)
   ]).then((results) => results);
 
-  getData(url.url2).then((results) => {
+  getData(url.url5).then((results) => {
   
     console.log(results[0]);
     
     //console.log(results[2]);
     for (let img in results[2]){
-      console.log(results[2][img].src);
+
+      console.log(`${parseInt(img)+1}: ` + results[2][img].src);
     };
 
     console.log(results[1]);
