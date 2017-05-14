@@ -4,7 +4,7 @@
   const requestPromise = require('request-promise');
   const cheerio = require('cheerio');
   const Boilerpipe = require('boilerpipe');
-  const url = require('./url.js');
+  const url = require('./urlParagraphs.js');
 
   const getTitle = (url) => {
 
@@ -60,16 +60,26 @@
     getImages(url)
   ]).then((results) => results);
 
-  getData(url.url5).then((results) => {
-  
-    console.log(results[0]);
-    
-    //console.log(results[2]);
-    for (let img in results[2]){
 
-      console.log(`${parseInt(img)+1}: ` + results[2][img].src);
-    };
+const getJSON = (url) => getData(url) 
+  .then((results) => {
 
-    console.log(results[1]);
+      let srcs = [];
+      for (let img in results[2]){
+             srcs = srcs.concat(results[2][img].src)
+      }
+
+      const obj = {
+        title: results[0],
+        link: url,
+        text: results[1],
+        images: srcs
+      };
+
+      return obj;
   });
+
+
+getJSON(url.url1).then( (obj) => console.log(obj)).catch( (e) => console.log(e) );
+
 })();
